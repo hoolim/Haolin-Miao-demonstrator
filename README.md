@@ -24,18 +24,7 @@ The MCE (Mandarin-Cantonese-English) dataset used for this project is publicly a
 
 The MCE dataset is intended solely for research purposes to support advancements in automatic speech recognition (ASR). Any commercial use without prior authorization is strictly prohibited. For potential collaborations or licensing inquiries, please reach out to 📮 `shelton1013@outlook.com`.
 
-## Interactive Demonstrator
 
-To provide a live demonstration of the fine-tuned model's capabilities, a Gradio web app can be launched using the `app.py` script.
-
-* **Gradio Demo Script**: `app.py`
-* **How to Run**:
-  ```bash
-  # Make sure the (whisper_env) Conda environment is activated.
-  # The script defaults to loading the 'whisper-small-deployment' model.
-  python app.py
-  ```
-  After running, a public sharing link will be generated, allowing anyone to test the model in their browser.
 
 ## Getting Started
 
@@ -87,35 +76,14 @@ The `finetune_whisper.py` script is used for model training. You can configure t
   tail -f training.log
   ```
 
-#### 4. Evaluation and Model Sharing
 
 After training is complete, you can evaluate performance and prepare the model for sharing.
 
-* **Evaluate Zero-Shot Baselines**:
-  ```bash
-  python evaluate_zeroshot.py
-  ```
-  This script outputs the baseline WER and CER for the original `small` and `large-v3` models.
-
-* **Create a Lightweight Model for Deployment**:
-  The full training output folder is very large. Before sharing, run the `create_deployment_model.py` script to extract only the essential model weights, creating a much smaller, lightweight version.
-  ```bash
-  # Example for creating a deployment version of the large-v3 model
-  python create_deployment_model.py \
-    --input_dir ./whisper-large-v3-encoder-frozen \
-    --output_dir ./whisper-large-v3-deployment
-  ```
-
-* **Upload to Hugging Face Hub (Recommended)**:
-  Use the `upload_model.py` script to upload your lightweight model to the Hugging Face Hub for permanent storage and easy access.
 
 ## Repository Structure
 
 * `prepare_dataset.py`: Parses the raw MCE dataset and generates `metadata.csv`.
 * `finetune_whisper.py`: The core script for fine-tuning a chosen Whisper model.
-* `evaluate_zeroshot.py`: Benchmarks the performance of original (zero-shot) models.
-* `create_deployment_model.py`: Extracts a lightweight, deployable model from a full training output directory.
-* `app.py`: Launches the interactive Gradio demo web app.
 * `README.md`: This documentation file.
 
 ## Acknowledgements
