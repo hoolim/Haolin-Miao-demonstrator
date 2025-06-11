@@ -55,21 +55,21 @@ conda install -c conda-forge ffmpeg
 
 Before training, run the preprocessing script to generate a unified metadata file.
 
-* **Important**: Open the `prepare_dataset.py` script and modify the `DATASET_BASE_PATH` variable to point to the absolute path of your MCE dataset.
+* **Important**: Open the `Preprocess.py` script and modify the `DATASET_BASE_PATH` variable to point to the absolute path of your MCE dataset.
 
 ```bash
-python prepare_dataset.py
+python Preprocess.py
 ```
 This command will create a `metadata.csv` file in the project's root directory.
 
 #### 3. Model Fine-Tuning
 
-The `finetune_whisper.py` script is used for model training. You can configure the `MODEL_NAME` and other hyperparameters (e.g., `learning_rate`) directly within the script to select the model and strategy.
+The `Fine-tuning-large.py` and `Fine-tuning-small.py` script is used for model training. You can configure the `MODEL_NAME` and other hyperparameters (e.g., `learning_rate`) directly within the script to select the model and strategy.
 
 * **Recommended launch command (runs in the background)**:
   ```bash
   # Ensure finetune_whisper.py is configured as needed
-  nohup python -u finetune_whisper.py > training.log 2>&1 &
+  nohup python -u Fine-tuning-small.py > training.log 2>&1 &
   ```
 * **Monitor training progress**:
   ```bash
@@ -83,7 +83,7 @@ After training is complete, you can evaluate performance and prepare the model f
 ## Repository Structure
 
 * `prepare_dataset.py`: Parses the raw MCE dataset and generates `metadata.csv`.
-* `finetune_whisper.py`: The core script for fine-tuning a chosen Whisper model.
+* `Fine-tuning-large.py` and `Fine-tuning-small.py`: The core script for fine-tuning a chosen Whisper model.
 * `README.md`: This documentation file.
 
 ## Acknowledgements
